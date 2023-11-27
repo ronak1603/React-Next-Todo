@@ -1,28 +1,35 @@
-'use client'
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import useSignupStore from '@/store/signUpStore';
-
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import useSignupStore from "@/store/signUpStore";
+import supabase from "../../config/supabaseClient";
 
 const Signup: React.FC = () => {
-  const { name, email, password, setName, setEmail, setPassword } = useSignupStore();
+  console.log("hello", supabase);
+  const { name, email, password, setName, setEmail, setPassword } =
+    useSignupStore();
   const router = useRouter();
 
   const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (name && email && password) {
-      router.push('/login');
+      router.push("/login");
     }
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-blue-100">
-      <h2 className="text-2xl font-semibold mb-4 text-center font-roboto">Sign Up</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-center font-roboto">
+        Sign Up
+      </h2>
       <div className="bg-white rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full border ring-blue-300 ring-opacity-50 shadow-md">
         <form onSubmit={handleSignup}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="name"
+            >
               Name:
             </label>
             <input
@@ -35,7 +42,10 @@ const Signup: React.FC = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="email"
+            >
               Email:
             </label>
             <input
@@ -48,7 +58,10 @@ const Signup: React.FC = () => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
               Password:
             </label>
             <input
@@ -70,7 +83,7 @@ const Signup: React.FC = () => {
           </div>
         </form>
         <p className="text-center mt-4">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link href="/login">
             <span className="cursor-pointer text-blue-500">Login</span>
           </Link>
@@ -81,4 +94,3 @@ const Signup: React.FC = () => {
 };
 
 export default Signup;
-

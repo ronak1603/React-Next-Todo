@@ -1,12 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 
-'use client'
-import useLoginStore from '@/store/loginStore';
-import Link from 'next/link';
-import React from 'react';
+"use client";
+import useLoginStore from "@/store/loginStore";
+import Link from "next/link";
+import React from "react";
 
 const Login: React.FC = () => {
-  const { email, password, setEmail, setPassword, login, isAuthenticated } = useLoginStore();
+  console.log(supabase);
+  const { email, password, setEmail, setPassword, login, isAuthenticated } =
+    useLoginStore();
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,11 +17,16 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-blue-100">
-      <h2 className="text-2xl font-semibold mb-4 text-center font-roboto">Login</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-center font-roboto">
+        Login
+      </h2>
       <div className="bg-white rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full border ring-blue-300 ring-opacity-50 shadow-md">
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="email"
+            >
               Email:
             </label>
             <input
@@ -32,7 +39,10 @@ const Login: React.FC = () => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
               Password:
             </label>
             <input
@@ -53,9 +63,13 @@ const Login: React.FC = () => {
             </button>
           </div>
         </form>
-        {isAuthenticated && <p className="text-green-500 text-center mt-4">Logged in successfully!</p>}
+        {isAuthenticated && (
+          <p className="text-green-500 text-center mt-4">
+            Logged in successfully!
+          </p>
+        )}
         <p className="text-center mt-4">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <Link href="/signUp">
             <span className="cursor-pointer text-blue-500">Sign Up</span>
           </Link>
@@ -66,5 +80,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
-
